@@ -1,4 +1,7 @@
 const { Router } = require('express');
+const mongoose = require('mongoose');
+
+const Product = require('../models/Product');
 
 module.exports = Router()
   .get('/', (req, res, next) => {
@@ -8,10 +11,15 @@ module.exports = Router()
   })
 
   .post('/', (req, res, next) => {
-    const product = {
+    const product = new Product({
       name: req.body.name,
       price: req.body.price
-    };
+    });
+
+    product.save().then(result => {
+      console.log(result);
+    })
+    .catch(err => console.log(err));
 
     res.status(200).json({
       message: 'Handling POST request to /products',
