@@ -11,20 +11,29 @@ module.exports = Router()
   })
 
   .post('/', (req, res, next) => {
-    const product = new Product({
-      name: req.body.name,
-      price: req.body.price
-    });
+    // const product = new Product({
+    //   name: req.body.name,
+    //   price: req.body.price
+    // });
 
-    product.save().then(result => {
-      console.log(result);
-    })
-    .catch(err => console.log(err));
+    // product.save().then(result => {
+    //   console.log(result);
+    // })
+    // .catch(err => console.log(err));
 
-    res.status(200).json({
-      message: 'Handling POST request to /products',
-      createdProduct: product
-    });
+    // res.status(200).json({
+    //   message: 'Handling POST request to /products',
+    //   createdProduct: product
+    // });
+
+    const { name, price } = req.body;
+
+    console.log(name, price);
+
+    Product
+      .create({ name, price })
+      .then(product => res.send(product))
+      .catch(next);
   })
 
   .get('/:productId', (req, res, next) => {
