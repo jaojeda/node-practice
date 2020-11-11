@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-module.exports = (url = process.env.MONGODB_URI) => {
+module.exports = (url = process.env.MONGO_URL) => {
 
   //Set up default mongoose connection
   mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
