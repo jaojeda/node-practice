@@ -25,6 +25,8 @@ describe('products route', () => {
       .then(res => {
         expect(res.body).toEqual({
           _id: expect.any(String),
+          name: 'book',
+          price: 12.00,
           __v: 0
         })
       })
